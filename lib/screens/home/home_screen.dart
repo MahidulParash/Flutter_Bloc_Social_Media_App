@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state.status == MyUserStatus.success) {
             return FloatingActionButton(
               shape: CircleBorder(),
-              backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+              backgroundColor: Colors.red,
               child: Icon(Icons.add),
               onPressed: () {
                 Navigator.push(
@@ -87,60 +87,82 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body: ListView.builder(
-          itemCount: 8,
-          itemBuilder: (context, int i) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: double.infinity,
-                //height: 400,
-                //color: Colors.blue,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            child: Icon(Icons.person),
-                            width: 50,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.secondary,
-                              shape: BoxShape.circle,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Column(
+      body: RefreshIndicator(
+        onRefresh: () async {
+          context.read<GetPostBloc>().add(GetPosts());
+        },
+        child: BlocBuilder<GetPostBloc, GetPostState>(
+          builder: (context, state) {
+            if (state is GetPostSuccess) {
+              return ListView.builder(
+                  itemCount: state.posts.length,
+                  itemBuilder: (context, int i) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        width: double.infinity,
+                        // height: 400,
+                        // color: Colors.blue,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('Mahidul'),
-                              Text(
-                                '27 December, 2023',
+                              Row(
+                                children: [
+                                  Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      shape: BoxShape.circle,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        state.posts[i].myUser.name,
+                                        style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18),
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(DateFormat('yyyy-MM-dd')
+                                          .format(state.posts[i].createAt))
+                                    ],
+                                  )
+                                ],
                               ),
+                              const SizedBox(height: 10),
+                              Container(
+                                // color: Colors.amber,
+                                child: Text(
+                                  state.posts[i].post,
+                                ),
+                              )
                             ],
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        child: Text(
-                          'Lorem Ispum',
-                          textAlign: TextAlign.left,
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }),
+                    );
+                  });
+            } else if (state is GetPostLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return const Center(
+                child: Text("An error has occured"),
+              );
+            }
+          },
+        ),
+      ),
     );
   }
 }

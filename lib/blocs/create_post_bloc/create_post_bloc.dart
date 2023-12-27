@@ -6,7 +6,7 @@ part 'create_post_event.dart';
 part 'create_post_state.dart';
 
 class CreatePostBloc extends Bloc<CreatePostEvent, CreatePostState> {
-  final PostRepository _postRepository;
+  PostRepository _postRepository;
 
   CreatePostBloc({required PostRepository postRepository})
       : _postRepository = postRepository,

@@ -1,3 +1,19 @@
+/* import 'package:flutter/material.dart';
+import 'package:user_repository/src/models/my_user.dart';
+
+class PostScreen extends StatelessWidget {
+  const PostScreen(MyUser myUser, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.background,
+      ),
+    );
+  }
+}
+ */
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_crud/blocs/create_post_bloc/create_post_bloc.dart';

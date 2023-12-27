@@ -14,6 +14,11 @@ class FirebaseUserRepository implements UserRepository {
   final userCollection = FirebaseFirestore.instance.collection('users');
 
   @override
+  Stream<User?> get user {
+    return _firebaseAuth.authStateChanges();
+  }
+
+  @override
   Future<void> logOut() async {
     try {
       await _firebaseAuth.signOut();
@@ -53,9 +58,7 @@ class FirebaseUserRepository implements UserRepository {
         email: myUser.email,
         password: password,
       );
-      myUser = myUser.copyWith(id: user.user!.uid);
-
-      return myUser;
+      return myUser.copyWith(id: user.user!.uid);
     } catch (e) {
       log(e.toString());
       rethrow;
@@ -65,10 +68,13 @@ class FirebaseUserRepository implements UserRepository {
   @override
   Future<MyUser> getMyUser(String myUserId) async {
     try {
-      return userCollection.doc(myUserId).get().then(
-            (value) =>
-                MyUser.fromEntity(MyUserEntity.fromDocument(value.data()!)),
-          );
+      final docSnapshot = await userCollection.doc(myUserId).get();
+      if (docSnapshot.exists) {
+        return MyUser.fromEntity(
+            MyUserEntity.fromDocument(docSnapshot.data()!));
+      } else {
+        throw Exception('User not found');
+      }
     } catch (e) {
       log(e.toString());
       rethrow;
@@ -83,13 +89,5 @@ class FirebaseUserRepository implements UserRepository {
       log(e.toString());
       rethrow;
     }
-  }
-
-  @override
-  Stream<User?> get user {
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      final user = firebaseUser;
-      return user;
-    });
   }
 }

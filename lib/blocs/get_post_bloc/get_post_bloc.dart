@@ -6,7 +6,7 @@ part 'get_post_event.dart';
 part 'get_post_state.dart';
 
 class GetPostBloc extends Bloc<GetPostEvent, GetPostState> {
-  final PostRepository _postRepository;
+  PostRepository _postRepository;
 
   GetPostBloc({required PostRepository postRepository})
       : _postRepository = postRepository,
