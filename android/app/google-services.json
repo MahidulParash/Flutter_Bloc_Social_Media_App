@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "811845932026",
+    "project_id": "flutter-bloc-crud-4288f",
+    "storage_bucket": "flutter-bloc-crud-4288f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811845932026:android:3ce2efb8c55ca18b8cca43",
+        "android_client_info": {
+          "package_name": "com.example.flutter_bloc_crud"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOV4immPOQ8yOIqOLU-dp8fzYbKte4xIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
