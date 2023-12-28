@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:equatable/equatable.dart';
 import 'package:user_repository/src/entities/entities.dart';
 
@@ -31,9 +30,9 @@ class MyUser extends Equatable {
     );
   }
 
-  bool get isEmpty => this == MyUser.empty;
+  // bool get isEmpty => this == MyUser.empty;
 
-  bool get isNoEmpty => this != MyUser.empty;
+  // bool get isNoEmpty => this != MyUser.empty;
 
   MyUserEntity toEntity() {
     return MyUserEntity(

@@ -34,13 +34,13 @@ class PostEntity {
   @override
   List<Object?> get props => [postId, post, createAt, myUser];
 
-  @override
-  String toString() {
-    return '''PostEntity: {
-      postId: $postId
-      post: $post
-      createAt: $createAt
-      myUser: $myUser
-    }''';
-  }
+  // @override
+  // String toString() {
+  //   return '''PostEntity: {
+  //     postId: $postId
+  //     post: $post
+  //     createAt: $createAt
+  //     myUser: $myUser
+  //   }''';
+  // }
 }

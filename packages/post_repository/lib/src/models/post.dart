@@ -32,9 +32,9 @@ class Post {
     );
   }
 
-  bool get isEmpty => this == Post.empty;
+  // bool get isEmpty => this == Post.empty;
 
-  bool get isNotEmpty => this != Post.empty;
+  // bool get isNotEmpty => this != Post.empty;
 
   PostEntity toEntity() {
     return PostEntity(
@@ -54,13 +54,13 @@ class Post {
     );
   }
 
-  @override
-  String toString() {
-    return '''Post: {
-      postId: $postId
-      post: $post
-      createAt: $createAt
-      myUser: $myUser
-    }''';
-  }
+  // @override
+  // String toString() {
+  //   return '''Post: {
+  //     postId: $postId
+  //     post: $post
+  //     createAt: $createAt
+  //     myUser: $myUser
+  //   }''';
+  // }
 }

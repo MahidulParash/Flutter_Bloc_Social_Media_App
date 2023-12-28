@@ -11,8 +11,6 @@ abstract class UserRepository {
 
   Future<MyUser> signUp(MyUser myUser, String password);
 
-  Future<void> resetPassword(String email);
-
   Future<void> setUserData(MyUser myUser);
 
   Future<MyUser> getMyUser(String myUserId);

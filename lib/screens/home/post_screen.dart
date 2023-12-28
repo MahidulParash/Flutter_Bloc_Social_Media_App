@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_crud/blocs/create_post_bloc/create_post_bloc.dart';
-import 'package:flutter_bloc_crud/blocs/my_user_bloc/my_user_bloc.dart';
 import 'package:post_repository/post_repository.dart';
 import 'package:user_repository/user_repository.dart';
 

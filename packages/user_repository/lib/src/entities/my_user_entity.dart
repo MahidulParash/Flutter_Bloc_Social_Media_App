@@ -35,12 +35,12 @@ class MyUserEntity extends Equatable {
         name,
       ];
 
-  @override
-  String toString() {
-    return '''UserEntity: {
-      id: $id
-      email: $email
-      name: $name
-    }''';
-  }
+  // @override
+  // String toString() {
+  //   return '''UserEntity: {
+  //     id: $id
+  //     email: $email
+  //     name: $name
+  //   }''';
+  // }
 }
