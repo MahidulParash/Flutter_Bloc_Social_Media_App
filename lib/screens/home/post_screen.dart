@@ -1,19 +1,3 @@
-/* import 'package:flutter/material.dart';
-import 'package:user_repository/src/models/my_user.dart';
-
-class PostScreen extends StatelessWidget {
-  const PostScreen(MyUser myUser, {super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
-      ),
-    );
-  }
-}
- */
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_crud/blocs/create_post_bloc/create_post_bloc.dart';
@@ -53,7 +37,7 @@ class _PostScreenState extends State<PostScreen> {
         child: Scaffold(
           floatingActionButton: FloatingActionButton(
             shape: CircleBorder(),
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            backgroundColor: Theme.of(context).colorScheme.secondary,
             child: Icon(Icons.add),
             onPressed: () {
               if (_controller.text.length != 0) {
@@ -67,7 +51,10 @@ class _PostScreenState extends State<PostScreen> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: Theme.of(context).colorScheme.background,
-            title: Text('Create Post'),
+            title: Text(
+              'Create Post',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
           ),
           body: SingleChildScrollView(
             child: Padding(

@@ -49,6 +49,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: MyTextField(
+                    controller: nameController,
+                    hintText: 'Name',
+                    obscureText: false,
+                    keyboardType: TextInputType.name,
+                    prefixIcon: const Icon(CupertinoIcons.person_fill),
+                    validator: (val) {
+                      if (val!.isEmpty) {
+                        return 'Please fill in this field';
+                      } else if (val.length > 15) {
+                        return 'Name too long';
+                      }
+                      return null;
+                    }),
+              ),
+              const SizedBox(height: 10),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: MyTextField(
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
@@ -102,25 +120,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         return 'Please fill in this field';
                       } else if (!passwordRexExp.hasMatch(val)) {
                         return 'Password must be atleast 8 character long';
-                      }
-                      return null;
-                    }),
-              ),
-              const SizedBox(height: 10),
-              const SizedBox(height: 10),
-              SizedBox(
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: MyTextField(
-                    controller: nameController,
-                    hintText: 'Name',
-                    obscureText: false,
-                    keyboardType: TextInputType.name,
-                    prefixIcon: const Icon(CupertinoIcons.person_fill),
-                    validator: (val) {
-                      if (val!.isEmpty) {
-                        return 'Please fill in this field';
-                      } else if (val.length > 30) {
-                        return 'Name too long';
                       }
                       return null;
                     }),

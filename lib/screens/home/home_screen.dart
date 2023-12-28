@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
           if (state.status == MyUserStatus.success) {
             return FloatingActionButton(
               shape: CircleBorder(),
-              backgroundColor: Colors.red,
+              backgroundColor: Theme.of(context).colorScheme.secondary,
               child: Icon(Icons.add),
               onPressed: () {
                 Navigator.push(
@@ -63,14 +63,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: 50,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.background,
+                      color: Theme.of(context).colorScheme.secondary,
                       shape: BoxShape.circle,
                     ),
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  Text('Welcome ${state.user!.name}'),
+                  Text(
+                    'Welcome ${state.user!.name}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               );
             } else {
@@ -97,6 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
               return ListView.builder(
                   itemCount: state.posts.length,
                   itemBuilder: (context, int i) {
+                    state.posts
+                        .sort((a, b) => b.createAt.compareTo(a.createAt));
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
@@ -111,11 +118,16 @@ class _HomeScreenState extends State<HomeScreen> {
                               Row(
                                 children: [
                                   Container(
-                                    width: 50,
-                                    height: 50,
+                                    width: 40,
+                                    height: 40,
                                     decoration: BoxDecoration(
-                                      color: Colors.grey,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
                                       shape: BoxShape.circle,
+                                    ),
+                                    child: Icon(
+                                      Icons.person,
                                     ),
                                   ),
                                   const SizedBox(
@@ -131,9 +143,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                             fontWeight: FontWeight.bold,
                                             fontSize: 18),
                                       ),
-                                      const SizedBox(height: 5),
-                                      Text(DateFormat('yyyy-MM-dd')
-                                          .format(state.posts[i].createAt))
+                                      Text(
+                                        DateFormat('dd-MM-yyyy')
+                                            .format(state.posts[i].createAt),
+                                        style: const TextStyle(fontSize: 12),
+                                      ),
+                                      Text(
+                                        DateFormat('hh:mm a')
+                                            .format(state.posts[i].createAt),
+                                        style: TextStyle(fontSize: 12),
+                                      ),
                                     ],
                                   )
                                 ],

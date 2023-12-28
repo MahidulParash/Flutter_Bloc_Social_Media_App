@@ -41,7 +41,8 @@ class _SignInScreenState extends State<SignInScreen> {
         }
       },
       child: Form(
-          key: _formKey,
+        key: _formKey,
+        child: Center(
           child: Column(
             children: [
               const SizedBox(height: 20),
@@ -52,8 +53,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     hintText: 'Email',
                     obscureText: false,
                     keyboardType: TextInputType.emailAddress,
-                    prefixIcon: const Icon(CupertinoIcons.mail_solid),
-                    errorMsg: '',
+                    prefixIcon: const Icon(Icons.email_outlined),
                     validator: (val) {
                       if (val!.isEmpty) {
                         return 'Please fill in this field';
@@ -131,7 +131,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     )
                   : const CircularProgressIndicator()
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
